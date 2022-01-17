@@ -1,0 +1,35 @@
+{
+    "variant_defaults":
+    {
+        "source": 
+        {
+            "exclude":
+            [
+                ".git",
+                ".github",
+                ".gitignore",
+                ".project",
+                "spinneret_template.json"
+            ]
+        }
+    },
+    "variants":
+    [
+        {
+            "minecraft": "[1.18,1.18.1]",
+            "source": 
+            {
+                "type": "git",
+                "repository": "https://github.com/Daomephsta/spinneret-template-java",
+                "branch": "1.18",
+                "rename":
+                {
+                    "src/main/java/MOD_ROOT_PACKAGE": "src/main/java/{{mod.rootPackage.directories}}",
+                    "src/main/java/MOD_ROOT_PACKAGE/MOD_NAME.java.liquid": "src/main/java/{{mod.rootPackage.directories}}/{{mod.name | pascalcase}}.java",
+                    "src/main/resources/MOD_ID.mixins.json.liquid": "src/main/resources/{{mod.id}}.mixins.json.liquid",
+                    "src/main/resources/assets/MOD_ID": "src/main/resources/assets/{{mod.id}}"
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "{{mod.id}}",
+  "version": "${version}",
+  "name": "{{mod.name}}",
+  "description": "{{mod.description}}",
+  "authors": {{mod.authors | json}},
+
+  "license": "All Rights Reserved",
+  "icon": "assets/{{mod.id}}/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "{{mod.rootPackage.name}}.{{mod.name | pascalcase}}"
+    ]
+  },
+  "mixins": [
+    "{{mod.id}}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    {% if mod.dependencies.fabricApi -%}
+    "fabric": "*",
+    {%- endif %}
+    "minecraft": "{{mod.compatibleMinecraftVersions}}",
+    "java": ">=17"
+  }
+}
